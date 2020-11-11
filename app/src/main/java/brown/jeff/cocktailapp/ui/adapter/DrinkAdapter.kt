@@ -61,7 +61,7 @@ class DrinkAdapter(
         ) {
             drinkNameTextView.text = drink.drink
             //Glide loads image into view
-            loadImage(drinkImageView, drink)
+            drinkImageView.loadImage(drink)
             drinkContainer.setOnClickListener {
                 clickListener(drink)
                 drinkSelectedListener?.onDrinkSelected(drink, drinkImageView)

@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -54,9 +55,19 @@ class RandomDrinkFragment : Fragment() {
         toolbar = view.findViewById(R.id.drink_toolbar)!!
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         collapsingToolbarLayout = view.findViewById(R.id.collapsingToolBarLayout)
-        collapsingToolbarLayout.setCollapsedTitleTextColor(resources.getColor(R.color.actionBarTextColor))
-        collapsingToolbarLayout.setExpandedTitleColor(resources.getColor(R.color.actionBarTextColor))
-        backPressedToolbar(toolbar, activity)
+        collapsingToolbarLayout.setCollapsedTitleTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.actionBarTextColor
+            )
+        )
+        collapsingToolbarLayout.setExpandedTitleColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.actionBarTextColor
+            )
+        )
+        toolbar.backPressedToolbar(activity)
         return view
 
     }
@@ -125,7 +136,7 @@ class RandomDrinkFragment : Fragment() {
             setIngredients(it.strMeasure13, it.strIngredient13, ingredient13_tv, view_divider13)
             setIngredients(it.strMeasure14, it.strIngredient14, ingredient14_tv, view_divider14)
             setIngredients(it.strMeasure15, it.strIngredient15, ingredient15_tv, view_divider15)
-            loadImage(drink_imageview, it)
+            drink_imageview.loadImage(it)
             instructions_tv.text = it.strInstructions
             coordinatorLayout.visibility = View.VISIBLE
             drink = it

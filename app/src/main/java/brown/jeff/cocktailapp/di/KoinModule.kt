@@ -18,7 +18,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val networkModule = module(override = true) {
+/*val networkModule = module(override = true) {
 
     fun provideRetrofit(): DrinkApi {
         return RetrofitClient.cocktailApi
@@ -29,7 +29,7 @@ val networkModule = module(override = true) {
     factory { DrinkAdapter(get(), get()) }
 
 
-}
+}*/
 val repositoryModule = module {
 
     fun provideRepository(

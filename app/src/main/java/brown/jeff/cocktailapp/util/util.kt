@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,13 +22,13 @@ import com.google.android.material.snackbar.Snackbar
 
 
 //used to load image into imageview
-fun loadImage(imageView: ImageView, drink: Drink) {
+fun ImageView.loadImage(drink: Drink) {
 
-    Glide.with(imageView.context)
+    Glide.with(this)
         .load(drink.drinkImg)
         .error(R.drawable.ic_broken_image_black_24dp)
         .apply(RequestOptions.centerCropTransform())
-        .into(imageView)
+        .into(this)
 }
 
 //hides keyboard from view
@@ -63,8 +64,8 @@ fun showSnackBar(
 
 
 //back press
-fun backPressedToolbar(toolbar: androidx.appcompat.widget.Toolbar?, activity: Activity?) {
-    toolbar?.setNavigationOnClickListener {
+fun Toolbar.backPressedToolbar(activity: Activity?) {
+    this.setNavigationOnClickListener {
         activity?.onBackPressed()
     }
 }

@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -75,10 +76,20 @@ class DrinkClickedFragment : Fragment(R.layout.drink_clicked_fragment) {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         toolbar = view?.findViewById(R.id.drink_toolbar)!!
         collapsingToolbarLayout = view.findViewById(R.id.collapsingToolBarLayout)
-        collapsingToolbarLayout.setCollapsedTitleTextColor(resources.getColor(R.color.actionBarTextColor))
-        collapsingToolbarLayout.setExpandedTitleColor(resources.getColor(R.color.actionBarTextColor))
+        collapsingToolbarLayout.setCollapsedTitleTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.actionBarTextColor
+            )
+        )
+        collapsingToolbarLayout.setExpandedTitleColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.actionBarTextColor
+            )
+        )
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        backPressedToolbar(toolbar, activity)
+        toolbar.backPressedToolbar(activity)
         retrieveSafeArgs()
 
         drinkClickedViewModel.getDrinkById(safeArgs.passDrink.idDrink)
@@ -143,7 +154,7 @@ class DrinkClickedFragment : Fragment(R.layout.drink_clicked_fragment) {
     //observes drink from viewmodel
     private fun loadDrinkIntoView() {
         drinkClickedViewModel.clickedDrink.observe(viewLifecycleOwner, Observer {
-            loadImage(drink_imageview, it)
+            drink_imageview.loadImage(it)
             setIngredients(it.strMeasure1, it.strIngredient1, ingredient1_tv, view_divider1)
             setIngredients(it.strMeasure2, it.strIngredient2, ingredient2_tv, view_divider2)
             setIngredients(it.strMeasure3, it.strIngredient3, ingredient3_tv, view_divider3)

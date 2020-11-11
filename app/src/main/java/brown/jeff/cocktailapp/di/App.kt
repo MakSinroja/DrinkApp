@@ -1,6 +1,7 @@
 package brown.jeff.cocktailapp.di
 
 import android.app.Application
+import brown.jeff.cocktailapp.network.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

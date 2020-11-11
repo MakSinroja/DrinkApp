@@ -11,6 +11,7 @@ class Constants {
         const val BASE_URL: String =
             "https://www.thecocktaildb.com/api/json/v2/${brown.jeff.cocktailapp.BuildConfig.apiKey}/"
 
+        const val TIMEOUT: Long = 60
 
     }
 
